@@ -4,7 +4,10 @@
   </div>
 </template>
 
+
 <style>
+  @import 'assets/base.css';
+  @import "assets/components.css";
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
