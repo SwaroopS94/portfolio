@@ -20,6 +20,21 @@ header
   font-family: "Avenir Next", "Avenir", sans-serif;
 }
 
+#about {
+  padding: 10px;
+}
+#about span {
+  font-family: "Arial Rounded MT Bold";
+  font-size: larger;
+  font-weight: bolder;
+  color: #8aacb8;
+}
+#about p {
+  text-decoration: #232323;
+  font-size: large;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+  font-weight: bolder;
+}
 a
 {
   text-decoration: none;

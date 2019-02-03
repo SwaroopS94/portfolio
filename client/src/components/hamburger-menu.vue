@@ -35,8 +35,10 @@
 <script>
   export default {
     name: "hamburger-menu",
-    props: {
-      data: []
+    data() {
+      return {
+        data: [1,2,3,4]
+      }
     }
   }
 </script>
