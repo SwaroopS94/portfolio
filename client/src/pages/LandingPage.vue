@@ -11,9 +11,10 @@
       </div>
     </header>
     <div id="about">
-      <span>
+      <div>
         About
-      </span>
+      </div>
+      <img class="profile-pic" src="../../src/images/Profile.jpg" />
       <p>
         I also work for one another product
         company trying to build things every
