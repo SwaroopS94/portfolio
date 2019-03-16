@@ -1,8 +1,7 @@
 <template>
   <div>
     <header class="header-container" id="Description">
-      <img src="../../src/assets/lemon_tea.png" />
-      <hamburger-menu :data="menuData"></hamburger-menu>
+      <img class="container-img" src="../../src/assets/lemon_tea.png" />
       <span class="header-desc-text">
         Anything in Javascript and Android
       </span>
@@ -21,14 +20,19 @@
         single day going with the flow.
       </p>
     </div>
+    <projects></projects>
+
   </div>
 </template>
 
 <script>
   import HamburgerMenu from "../components/hamburger-menu";
+  import Projects from "../components/projects";
 
   export default {
-    components: {HamburgerMenu},
+    components: {
+      Projects,
+      HamburgerMenu},
     name: "landing-page",
     data() {
       return {
@@ -59,15 +63,5 @@
     width: 100%;
     height: 300px;
     position: relative;
-  }
-  .header-container img {
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
-    position: absolute;
-    display: block;
-    margin: auto;
-    z-index: 10;
-    object-fit: cover;
   }
 </style>
