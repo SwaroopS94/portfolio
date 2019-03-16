@@ -5,10 +5,12 @@
           v-model="selectedProject"
            :style="{display: project.style}"
       >
-        <img :src=selectedProject.src>
-        <div class="text" >Caption {{selectedProject.id}}</div>
-        <button @click="addSlide(-1)">prev</button>
-        <button @click="addSlide(1)">next</button>
+        <div class="img-container">
+          <div class="text" >Caption {{selectedProject.id}}</div>
+          <img :src=selectedProject.src>
+          <button @click="addSlide(-1)">prev</button>
+          <button @click="addSlide(1)">next</button>
+        </div>
       </div>
     </div>
 
@@ -35,39 +37,34 @@
             projectUrl: "http://wv.foodpanda.in/",
             Description: "Description Foodpanda PWA",
             src: "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png",
-            style:"block"
+            style:"none"
           }],
         selectedProject: {},
-        carouselSlideIndex: 1
+        carouselSlideIndex: 0
       }
     },
     methods: {
       addSlide(n) {
-        this.carouselSlideShow(this.carouselSlideIndex =+ n);
+        this.carouselSlideIndex+=n;
+        this.carouselSlideShow(this.carouselSlideIndex);
       },
-      alerter() {
-        window.alert("Hello");
-      },
-      carouselSlideShow(index) {
-        let slideIndex;
-        if(index > this.projects.length) {
-          slideIndex = 0;
+      carouselSlideShow() {
+        if(this.carouselSlideIndex >= this.projects.length) {
+          this.carouselSlideIndex  = 0;
         }
-        else if(index<1) {
-          slideIndex = this.projects.length-1;
-        }
-        else {
-          slideIndex = index;
+        else if(this.carouselSlideIndex <0) {
+          this.carouselSlideIndex  = this.projects.length-1;
         }
         this.projects.forEach((slide) => {
           slide.style = "none";
         });
-        this.selectedProject = this.projects[slideIndex];
-        this.projects[slideIndex].style = "block";
+        this.selectedProject = this.projects[this.carouselSlideIndex];
+        this.selectedProject.style = "block";
       }
     },
     mounted() {
       this.selectedProject = this.projects[0];
+      this.selectedProject.style = "block";
     }
   }
 </script>
@@ -80,15 +77,20 @@
   img {vertical-align: middle;}
 
   .carousel-container {
-    position: relative;
-    width: 100%;
-    height: 100px;
-    padding-top: 20px;
+     width: 100%;
+    height: 50px;
   }
 
-  .carousel-container img {
-    max-height: 100%;
-    max-width: 100%;
+  .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .img-container {
+    height: 200px;
+    width: 100%;
+    border-radius: 50px;
   }
 
 
@@ -121,8 +123,6 @@
     color: black;
     font-size: 20px;
     padding: 8px 12px;
-    position: absolute;
-    bottom: 8px;
     width: 100%;
     text-align: center;
   }
