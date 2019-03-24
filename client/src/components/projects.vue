@@ -8,8 +8,8 @@
         <div class="img-container">
           <div class="text" >Caption {{selectedProject.id}}</div>
           <img :src=selectedProject.src>
-          <button @click="addSlide(-1)">prev</button>
-          <button @click="addSlide(1)">next</button>
+          <button class="prev" @click="addSlide(-1)">prev</button>
+          <button class="next" @click="addSlide(1)">next</button>
         </div>
       </div>
     </div>
@@ -78,7 +78,6 @@
 
   .carousel-container {
      width: 100%;
-    height: 50px;
   }
 
   .img-container img {
@@ -93,12 +92,13 @@
     border-radius: 50px;
   }
 
-
-  /* Position the "next button" to the right */
-  .next {
-    right: 0;
+  .prev {
+    margin:auto auto auto 0;
   }
 
+  .nect {
+    margin:auto 0 auto auto;
+  }
 
 
   /* Fading animation */
