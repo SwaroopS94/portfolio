@@ -5,8 +5,8 @@
           v-model="selectedProject"
            :style="{display: project.style}"
       >
+        <div class="text" >Caption {{selectedProject.id}}</div>
         <div class="img-container">
-          <div class="text" >Caption {{selectedProject.id}}</div>
           <img :src=selectedProject.src>
           <button class="prev" @click="addSlide(-1)">prev</button>
           <button class="next" @click="addSlide(1)">next</button>

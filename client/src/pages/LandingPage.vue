@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="landing-page">
     <header class="header-container" id="Description">
       <img class="container-img" src="../../src/assets/lemon_tea.png" />
       <span class="header-desc-text">
@@ -20,17 +20,19 @@
         single day going with the flow.
       </p>
     </div>
-    <projects></projects>
-
+    <projects class="projects"></projects>
+    <skills class="skills"></skills>
   </div>
 </template>
 
 <script>
   import HamburgerMenu from "../components/hamburger-menu";
-  import Projects from "../components/projects";
+  import Projects from "../pageComponents/projects";
+  import Skills from "../pageComponents/skills";
 
   export default {
     components: {
+      Skills,
       Projects,
       HamburgerMenu},
     name: "landing-page",
@@ -63,5 +65,12 @@
     width: 100%;
     height: 300px;
     position: relative;
+  }
+
+  .projects {
+    margin-top: 10px;
+  }
+  .skills {
+    margin-top: 10px;
   }
 </style>
