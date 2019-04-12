@@ -1,6 +1,11 @@
 <template>
   <div>
-    <circular-progress-bar :progress="'30%'"></circular-progress-bar>
+    <div class="skills-container">
+      <span class="skill-label">
+      Skills
+    </span>
+      <circular-progress-bar :progress="'30%'"></circular-progress-bar>
+    </div>
   </div>
 </template>
 
@@ -15,4 +20,7 @@
 
 <style scoped>
 
+  .skills-container {
+    width: 100%;
+  }
 </style>

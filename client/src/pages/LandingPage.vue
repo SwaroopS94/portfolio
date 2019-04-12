@@ -71,6 +71,11 @@
     margin-top: 10px;
   }
   .skills {
-    margin-top: 10px;
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .landing-page {
+    position: relative;
   }
 </style>
