@@ -1,0 +1,13 @@
+{
+  "projects": [
+    {
+      "projectTitle":"Foodpanda PWA",
+      "projectUrl": "http://wv.foodpanda.in/",
+      "Description": "Description Foodpanda PWA"
+    }],
+  "skills": [
+    {
+      "name": "Javascript",
+      "progress": 50
+    }]
+}

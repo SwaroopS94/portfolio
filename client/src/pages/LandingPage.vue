@@ -29,6 +29,7 @@
   import HamburgerMenu from "../components/hamburger-menu";
   import Projects from "../pageComponents/projects";
   import Skills from "../pageComponents/skills";
+  import axios from 'axios';
 
   export default {
     components: {
@@ -38,11 +39,18 @@
     name: "landing-page",
     data() {
       return {
-        menuData:['Home','About','Projects','Contact']
+        menuData:['Home','About','Projects','Contact'],
+        skills: [],
+        baseUrl: "http://localhost:8080"
       }
     },
     methods: {
+    },
+    mounted() {
+      this.skills = axios.get(`${this.baseUrl}/about-me`).then((req, res) => {
+        console.log("About me response : ",res);
 
+      });
     }
   }
 </script>

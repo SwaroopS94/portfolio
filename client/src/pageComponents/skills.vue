@@ -4,7 +4,7 @@
       <span class="skill-label">
       Skills
     </span>
-      <circular-progress-bar :progress="'30%'"></circular-progress-bar>
+      <circular-progress-bar :progress="30"></circular-progress-bar>
     </div>
   </div>
 </template>
