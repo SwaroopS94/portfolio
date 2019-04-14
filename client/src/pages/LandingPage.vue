@@ -21,7 +21,7 @@
       </p>
     </div>
     <projects class="projects"></projects>
-    <skills class="skills"></skills>
+    <skills class="skills" :skills="skills"></skills>
   </div>
 </template>
 
@@ -29,6 +29,7 @@
   import HamburgerMenu from "../components/hamburger-menu";
   import Projects from "../pageComponents/projects";
   import Skills from "../pageComponents/skills";
+  import mock_data from '../../mock.json';
 
   export default {
     components: {
@@ -38,8 +39,12 @@
     name: "landing-page",
     data() {
       return {
-        menuData:['Home','About','Projects','Contact']
+        menuData:['Home','About','Projects','Contact'],
+        skills: ""
       }
+    },
+    mounted() {
+      this.skills = mock_data.skills;
     },
     methods: {
 

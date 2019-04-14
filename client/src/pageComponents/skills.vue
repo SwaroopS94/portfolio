@@ -1,10 +1,14 @@
 <template>
   <div>
     <div class="skills-container">
-      <span class="skill-label">
+      <div class="skill-label">
       Skills
-    </span>
-      <circular-progress-bar :progress="'30%'"></circular-progress-bar>
+      </div>
+      <div class="skills">
+        <div v-for="(skill, index) in skills" v-if="skill && skill.progress">
+          <circular-progress-bar :class="getSkillClass(index)" :progress="skill.progress"></circular-progress-bar>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -14,13 +18,30 @@
 
   export default {
     components: {CircularProgressBar},
-    name: "skills"
+    name: "skills",
+    props: {
+      skills:{
+        type: Array,
+        default: []
+      }
+    },
+    methods: {
+      getSkillClass(index) {
+        return (index!==0)?'first-skill':'';
+      }
+    }
   }
 </script>
 
 <style scoped>
 
   .skills-container {
+    margin-top: 30px;
     width: 100%;
+    text-align: center;
+  }
+
+  .skills {
+    display: flex;
   }
 </style>
