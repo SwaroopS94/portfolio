@@ -1,6 +1,6 @@
 <template>
-  <div class="pie-wrapper pie-wrapper--solid progress-50">
-    <span class="label">25<span class="smaller">%</span></span>
+  <div :id="'circular_progress'+progress">
+    <span class="label">{{progress}}<span class="smaller">%</span></span>
   </div>
 </template>
 
@@ -12,18 +12,31 @@
         type: Number,
         default: 0
       }
+    },
+    mounted() {
+      console.log("Progress : ",this.progress);
+      let circularProgressPercentage = 90*this.progress/25;
+      let circularProgressStyle = document.createElement("style");
+      circularProgressStyle.type = "text/css";
+      circularProgressStyle.innerHTML = ".pie-wrapper--solid.progress-50:before {" +
+      "background: #e67e22;" +
+      "-webkit-transform: rotate(0deg);" +
+      `transform: rotate(${circularProgressPercentage}deg);` +
+      "}";
+      let circularProgressBar = document.getElementById(`circular_progress`+this.progress);
+      circularProgressBar.className = "pie-wrapper pie-wrapper--solid progress-50";
     }
   }
 </script>
 
 <style scoped>
-  @import url(https://fonts.googleapis.com/css?family=Lato:700);
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
 
+
+
+  .pie-wrapper--solid {
+    border-radius: 50%;
+    overflow: hidden;
+  }
   html,
   body {
     background: #ecf0f1;
@@ -33,24 +46,11 @@
     padding: 10px;
   }
 
-  .set-size {
-    font-size: 10em;
-  }
-
-  .charts-container:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-
   .pie-wrapper {
     height: 10em;
     width: 10em;
     margin: 15px;
     position: relative;
-  }
-  .pie-wrapper:nth-child(3n + 1) {
-    clear: both;
   }
   .pie-wrapper .pie {
     height: 100%;
@@ -91,19 +91,6 @@
     padding-bottom: 20px;
     vertical-align: super;
   }
-  .pie-wrapper .shadow {
-    height: 100%;
-    width: 100%;
-    border: 0.1em solid #bdc3c7;
-    border-radius: 50%;
-  }
-  .pie-wrapper.style-2 .label {
-    background: none;
-    color: #7f8c8d;
-  }
-  .pie-wrapper.style-2 .label .smaller {
-    color: #bdc3c7;
-  }
 
 
   .pie-wrapper--solid {
@@ -122,39 +109,8 @@
   .pie-wrapper--solid .label {
     background: transparent;
   }
-  .pie-wrapper--solid.progress-65 {
-    background: linear-gradient(to right, #e67e22 50%, #34495e 50%);
-  }
-  .pie-wrapper--solid.progress-65:before {
-    background: #e67e22;
-    -webkit-transform: rotate(126deg);
-    transform: rotate(126deg);
-  }
   .pie-wrapper--solid.progress-50 {
     background: linear-gradient(to right, #e67e22 50%, #34495e 50%);
-  }
-  .pie-wrapper--solid.progress-50:before {
-    background: #e67e22;
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
-
-
-  .pie-wrapper--solid.progress-25 {
-    background: linear-gradient(to right, #9b59b6 50%, #34495e 50%);
-  }
-  .pie-wrapper--solid.progress-25:before {
-    background: #34495e;
-    -webkit-transform: rotate(-270deg);
-    transform: rotate(-270deg);
-  }
-  .pie-wrapper--solid.progress-88 {
-    background: linear-gradient(to right, #3498db 50%, #34495e 50%);
-  }
-  .pie-wrapper--solid.progress-88:before {
-    background: #3498db;
-    -webkit-transform: rotate(43.2deg);
-    transform: rotate(43.2deg);
   }
 
 </style>

@@ -4,9 +4,10 @@
       <div class="skill-label">
       Skills
       </div>
-      <div class="skills">
+      <div class="skills" v-if="skills && skills.length>0">
         <div v-for="(skill, index) in skills" v-if="skill && skill.progress">
-          <circular-progress-bar :class="getSkillClass(index)" :progress="skill.progress"></circular-progress-bar>
+          <span> {{skill.name}}</span>
+          <circular-progress-bar :progress="skill.progress"></circular-progress-bar>
         </div>
       </div>
     </div>

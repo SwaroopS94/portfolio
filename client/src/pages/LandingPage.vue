@@ -22,6 +22,15 @@
     </div>
     <projects class="projects"></projects>
     <skills class="skills" :skills="skills"></skills>
+    <div class="footer">
+      <span class="contact-header">Get in touch!!</span>
+      <div class="contact-message">
+        <textarea placeholder="Want to share something" v-model="messageData"/>
+      </div>
+      <button @click="sendMessage()">
+        Send message.
+      </button>
+    </div>
   </div>
 </template>
 
@@ -40,14 +49,17 @@
     data() {
       return {
         menuData:['Home','About','Projects','Contact'],
-        skills: ""
+        skills: "",
+        messageData: ""
       }
     },
     mounted() {
       this.skills = mock_data.skills;
     },
     methods: {
-
+      sendMessage() {
+        console.log("Send message to server");
+      }
     }
   }
 </script>
@@ -82,5 +94,25 @@
 
   .landing-page {
     position: relative;
+  }
+
+  .footer {
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  .footer .contact-header {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  .footer .contact-message {
+    padding: 10px;
+  }
+  .footer .contact-message textarea {
+    width: 100%;
+    height: 100px;
+    font-size: 20px;
+    max-width: 100%;
+    max-height: 150px;
   }
 </style>
