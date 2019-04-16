@@ -28,7 +28,7 @@
             projectTitle:"Foodpanda PWA",
             projectUrl: "http://wv.foodpanda.in/",
             Description: "Description Foodpanda PWA",
-            src: "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+            src: "./src/images/lemon_tea.png",
             style:"none"
           },
           {
