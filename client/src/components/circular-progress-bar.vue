@@ -14,17 +14,21 @@
       }
     },
     mounted() {
-      console.log("Progress : ",this.progress);
       let circularProgressPercentage = 90*this.progress/25;
+      console.log("Progress : ",circularProgressPercentage);
       let circularProgressStyle = document.createElement("style");
       circularProgressStyle.type = "text/css";
-      circularProgressStyle.innerHTML = ".pie-wrapper--solid.progress-50:before {" +
-      "background: #e67e22;" +
-      "-webkit-transform: rotate(0deg);" +
+      circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.progress} {` +
+      "background: linear-gradient(to right, #e67e22 50%, #34495e 50%);}";
+      circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.progress}:before {` +
+      "background: #e67e22;-webkit-transform: rotate(0deg);" +
       `transform: rotate(${circularProgressPercentage}deg);` +
       "}";
+      let script = document.querySelector("script");
+      script.parentNode.insertBefore(circularProgressStyle,script);
+
       let circularProgressBar = document.getElementById(`circular_progress`+this.progress);
-      circularProgressBar.className = "pie-wrapper pie-wrapper--solid progress-50";
+      circularProgressBar.className = `pie-wrapper pie-wrapper--solid progress-50 ${"circular_progress"+this.progress}`;
     }
   }
 </script>
