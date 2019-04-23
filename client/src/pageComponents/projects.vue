@@ -5,11 +5,11 @@
           v-model="selectedProject"
            :style="{display: project.style}"
       >
-        <div class="text" >Caption {{selectedProject.id}}</div>
+        <div class="text" >{{selectedProject.projectTitle}}</div>
         <div class="img-container">
           <img :src=selectedProject.src>
-          <button class="prev" @click="addSlide(-1)">prev</button>
-          <button class="next" @click="addSlide(1)">next</button>
+          <a class="prev" @click="addSlide(-1)"><img src='../../src/assets/left_arrow.svg'/> </a>
+          <a class="next" @click="addSlide(1)"><img src="../../src/assets/right_arrow.svg" /></a>
         </div>
       </div>
     </div>
@@ -28,12 +28,12 @@
             projectTitle:"Foodpanda PWA",
             projectUrl: "http://wv.foodpanda.in/",
             Description: "Description Foodpanda PWA",
-            src: "./src/images/lemon_tea.png",
+            src: "https://raw.githubusercontent.com/SwaroopS94/portfolio/carousel_info/client/src/assets/foodpanda_pwa.png",
             style:"none"
           },
           {
             id:2,
-            projectTitle:"Foodpanda PWA",
+            projectTitle:"Foodpanda Vendor APP",
             projectUrl: "http://wv.foodpanda.in/",
             Description: "Description Foodpanda PWA",
             src: "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png",
@@ -83,21 +83,32 @@
   .img-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .img-container {
     height: 200px;
     width: 100%;
-    border-radius: 50px;
+    background: grey;
   }
 
   .prev {
-    margin:auto auto auto 0;
+    position: absolute;
+    z-index: 10;
+    left: 5px;
+    top: 50%;
   }
 
-  .nect {
-    margin:auto 0 auto auto;
+  .next {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+  }
+
+  .prev img,.next img {
+    object-fit: cover;
+    width: 60px;
+    height: 60px;
   }
 
 
