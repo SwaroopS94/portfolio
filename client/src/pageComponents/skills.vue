@@ -45,4 +45,10 @@
   .skills {
     display: flex;
   }
+
+  .skill-label {
+    font-size: 40px;
+    font-weight: bold;
+
+  }
 </style>

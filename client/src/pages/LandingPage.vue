@@ -30,6 +30,13 @@
       <button @click="sendMessage()">
         Send message.
       </button>
+      <div>
+        <ul class="social-contacts">
+          <li v-if="socialContacts && socialContacts.length>0" v-for="contact in socialContacts">
+            <a :href="contact.src" style="width: 100%; height: 100%;" :class="getFontClass(contact.name)" />
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +46,8 @@
   import Projects from "../pageComponents/projects";
   import Skills from "../pageComponents/skills";
   import mock_data from '../../mock.json';
+  import axios from 'axios';
+  import common from "../../src/common.js";
 
   export default {
     components: {
@@ -50,15 +59,30 @@
       return {
         menuData:['Home','About','Projects','Contact'],
         skills: "",
-        messageData: ""
+        messageData: "",
+        socialContacts: [],
       }
     },
     mounted() {
       this.skills = mock_data.skills;
+      this.socialContacts = mock_data.socialContacts;
     },
     methods: {
       sendMessage() {
-        console.log("Send message to server");
+        axios.post("http://localhost:8080/send",{
+          data: this.messageData
+        }).then((res) => {
+          console.log("Response : ",res);
+        });
+        common.showToast("Message Sent");
+      },
+      getFontClass(name) {
+        switch(name) {
+          case "facebook":
+            return "fa fa-facebook-square";
+          case "linkedin":
+            return "fa fa-linkedin-square";
+        }
       }
     }
   }
@@ -114,5 +138,16 @@
     font-size: 20px;
     max-width: 100%;
     max-height: 150px;
+  }
+
+  .social-contacts {
+    margin: 0;
+  }
+  .social-contacts li {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    padding-left: 10px;
+    font-size: 30px;
   }
 </style>

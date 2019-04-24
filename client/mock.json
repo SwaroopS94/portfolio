@@ -7,6 +7,15 @@
     {
       "name": "Android",
       "progress": 70
+    }],
+  "socialContacts": [
+    {
+      "name": "facebook",
+      "src": "https://www.facebook.com/swaroop.srinivasan"
+    },
+    {
+      "name": "linkedin",
+      "src": "https://www.linkedin.com/in/swaroopsrinivasan/"
     }
   ]
 }

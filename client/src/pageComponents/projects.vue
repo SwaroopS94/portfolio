@@ -2,14 +2,17 @@
   <div>
     <div class="carousel-container">
       <div v-for="(project,projectIndex) in projects"
-          v-model="selectedProject"
+           v-model="selectedProject"
            :style="{display: project.style}"
       >
-        <div class="text" >{{selectedProject.projectTitle}}</div>
+        <div class="text">{{selectedProject.projectTitle}}</div>
         <div class="img-container">
           <img :src=selectedProject.src>
           <a class="prev" @click="addSlide(-1)"><img src='../../src/assets/left_arrow.svg'/> </a>
-          <a class="next" @click="addSlide(1)"><img src="../../src/assets/right_arrow.svg" /></a>
+          <a class="next" @click="addSlide(1)"><img src="../../src/assets/right_arrow.svg"/></a>
+        </div>
+        <div class="proj-desc">
+          {{selectedProject.description}}
         </div>
       </div>
     </div>
@@ -20,24 +23,24 @@
 <script>
   export default {
     name: "projects",
-    data(){
+    data() {
       return {
         projects: [
           {
             id: 1,
-            projectTitle:"Foodpanda PWA",
+            projectTitle: "Foodpanda PWA",
             projectUrl: "http://wv.foodpanda.in/",
-            Description: "Description Foodpanda PWA",
+            description: "Foodpanda PWA on Ola consumer app",
             src: "https://raw.githubusercontent.com/SwaroopS94/portfolio/carousel_info/client/src/assets/foodpanda_pwa.png",
-            style:"none"
+            style: "none"
           },
           {
-            id:2,
-            projectTitle:"Foodpanda Vendor APP",
+            id: 2,
+            projectTitle: "Foodpanda Vendor APP",
             projectUrl: "http://wv.foodpanda.in/",
-            Description: "Description Foodpanda PWA",
+            description: "Foodpanda Vendor Dashboard to receive orders",
             src: "https://homepages.cae.wisc.edu/~ece533/images/arctichare.png",
-            style:"none"
+            style: "none"
           }],
         selectedProject: {},
         carouselSlideIndex: 0
@@ -45,15 +48,15 @@
     },
     methods: {
       addSlide(n) {
-        this.carouselSlideIndex+=n;
+        this.carouselSlideIndex += n;
         this.carouselSlideShow(this.carouselSlideIndex);
       },
       carouselSlideShow() {
-        if(this.carouselSlideIndex >= this.projects.length) {
-          this.carouselSlideIndex  = 0;
+        if (this.carouselSlideIndex >= this.projects.length) {
+          this.carouselSlideIndex = 0;
         }
-        else if(this.carouselSlideIndex <0) {
-          this.carouselSlideIndex  = this.projects.length-1;
+        else if (this.carouselSlideIndex < 0) {
+          this.carouselSlideIndex = this.projects.length - 1;
         }
         this.projects.forEach((slide) => {
           slide.style = "none";
@@ -71,13 +74,27 @@
 
 <style scoped>
 
-  * {box-sizing: border-box}
-  body {font-family: Verdana, sans-serif; margin:0}
-  .mySlides {display: none}
-  img {vertical-align: middle;}
+  * {
+    box-sizing: border-box
+  }
+
+  body {
+    font-family: Verdana, sans-serif;
+    margin: 0
+  }
+
+  .mySlides {
+    display: none
+  }
+
+  img {
+    vertical-align: middle;
+  }
 
   .carousel-container {
-     width: 100%;
+    height: 300px;
+    width: 100%;
+    background: grey;
   }
 
   .img-container img {
@@ -87,9 +104,9 @@
   }
 
   .img-container {
-    height: 200px;
     width: 100%;
-    background: grey;
+    height: 200px;
+    overflow: auto;
   }
 
   .prev {
@@ -105,11 +122,16 @@
     top: 50%;
   }
 
-  .prev img,.next img {
+  .prev img, .next img {
     object-fit: cover;
     width: 60px;
     height: 60px;
   }
+
+  .carousel-container .proj-desc {
+    margin-top: 10px;
+  }
+
 
 
   /* Fading animation */
@@ -121,14 +143,23 @@
   }
 
   @-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+    from {
+      opacity: .4
+    }
+    to {
+      opacity: 1
+    }
   }
 
   @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
+    from {
+      opacity: .4
+    }
+    to {
+      opacity: 1
+    }
   }
+
   /* Caption text */
   .text {
     color: black;
