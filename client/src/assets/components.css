@@ -32,3 +32,9 @@
   -ms-transition-property: bottom, transform;
   transition-property: bottom, transform;
 }
+
+.toast-show {
+position: fixed;
+margin-bottom: 10px;
+margin-left: 50%;
+}
