@@ -2,5 +2,4 @@
 *.iml
 **/.DS_Store
 **/newrelic_agent.log
-server/app/dist/
-server/node_modules/
+node_modules/
