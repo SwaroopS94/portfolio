@@ -7,7 +7,7 @@
       <div class="skills" v-if="skills && skills.length>0">
         <div v-for="(skill, index) in skills" v-if="skill && skill.progress">
           <span> {{skill.name}}</span>
-          <circular-progress-bar :progress="skill.progress"></circular-progress-bar>
+          <circular-progress-bar :skillName="skill.name" :progress="skill.progress"></circular-progress-bar>
         </div>
       </div>
     </div>
@@ -40,6 +40,7 @@
     margin-top: 30px;
     width: 100%;
     text-align: center;
+    overflow: scroll;
   }
 
   .skills {

@@ -9,15 +9,13 @@
         I'm Swaroop
       </div>
     </header>
-    <div id="about">
+    <div class="about" id="about">
       <div>
-        About
+        About Me
       </div>
       <img class="profile-pic" src="../../src/images/Profile.jpg" />
       <p>
-        I also work for one another product
-        company trying to build things every
-        single day going with the flow.
+        {{mockData.aboutMeDesc}}
       </p>
     </div>
     <projects class="projects"></projects>
@@ -27,8 +25,8 @@
       <div class="contact-message">
         <textarea placeholder="Want to share something" v-model="messageData"/>
       </div>
-      <button @click="sendMessage()">
-        Send message.
+      <button class="send-message" @click="sendMessage()">
+        Send Message
       </button>
       <div>
         <ul class="social-contacts">
@@ -58,14 +56,16 @@
     data() {
       return {
         menuData:['Home','About','Projects','Contact'],
-        skills: "",
+        skills: [],
         messageData: "",
         socialContacts: [],
+        mockData: mock_data
       }
     },
     mounted() {
-      this.skills = mock_data.skills;
+      this.skills = JSON.parse(JSON.stringify(mock_data.skills));
       this.socialContacts = mock_data.socialContacts;
+
     },
     methods: {
       sendMessage() {
@@ -77,12 +77,18 @@
         common.showToast("Message Sent");
       },
       getFontClass(name) {
+        let iconFontclass = "fa ";
         switch(name) {
           case "facebook":
-            return "fa fa-facebook-square";
+            iconFontclass+="fa-facebook-square";
+            break;
           case "linkedin":
-            return "fa fa-linkedin-square";
+            iconFontclass+="fa-linkedin-square";
+            break;
+          default:
+            iconFontclass+="fa-envelope-square";
         }
+        return iconFontclass;
       }
     }
   }
@@ -140,14 +146,32 @@
     max-height: 150px;
   }
 
-  .social-contacts {
+  .footer .social-contacts {
     margin: 0;
+    padding-left: 0;
   }
-  .social-contacts li {
+  .footer .social-contacts li {
     display: inline-block;
-    height: 20px;
-    width: 20px;
     padding-left: 10px;
-    font-size: 30px;
+    margin: 0;
+    font-size: 50px;
+  }
+
+  .send-message {
+    background: #000;
+    color: #fff;
+    size: 15px;
+    font-size: 15px;
+    font-weight: bolder;
+    padding: 5px 30px 5px 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+  }
+
+  .about p {
+    position: relative;
+    margin: auto;
+    width: 65%;
   }
 </style>

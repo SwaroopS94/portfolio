@@ -1,5 +1,5 @@
 <template>
-  <div :id="'circular_progress'+progress">
+  <div v-if="skillName" :id="'circular_progress'+skillName">
     <span class="label">{{progress}}<span class="smaller">%</span></span>
   </div>
 </template>
@@ -11,6 +11,10 @@
       progress: {
         type: Number,
         default: 0
+      },
+      skillName: {
+        type: String,
+        default: ""
       }
     },
     mounted() {
@@ -18,29 +22,22 @@
       console.log("Progress : ",circularProgressPercentage);
       let circularProgressStyle = document.createElement("style");
       circularProgressStyle.type = "text/css";
-      circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.progress} {` +
+      circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.skillName} {` +
       "background: linear-gradient(to right, #e67e22 50%, #34495e 50%);}";
-      circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.progress}:before {` +
+      circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.skillName}:before {` +
       "background: #e67e22;-webkit-transform: rotate(0deg);" +
       `transform: rotate(${circularProgressPercentage}deg);` +
       "}";
       let script = document.querySelector("script");
       script.parentNode.insertBefore(circularProgressStyle,script);
 
-      let circularProgressBar = document.getElementById(`circular_progress`+this.progress);
-      circularProgressBar.className = `pie-wrapper pie-wrapper--solid progress-50 ${"circular_progress"+this.progress}`;
+      let circularProgressBar = document.getElementById(`circular_progress`+this.skillName);
+      circularProgressBar.className = `pie-wrapper pie-wrapper--solid progress-50 ${"circular_progress"+this.skillName}`;
     }
   }
 </script>
 
 <style scoped>
-
-
-
-  .pie-wrapper--solid {
-    border-radius: 50%;
-    overflow: hidden;
-  }
   html,
   body {
     background: #ecf0f1;
@@ -99,7 +96,6 @@
 
   .pie-wrapper--solid {
     border-radius: 50%;
-    overflow: hidden;
   }
   .pie-wrapper--solid:before {
     border-radius: 0 100% 100% 0 / 50%;
