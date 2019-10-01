@@ -1,16 +1,17 @@
 <template>
   <div class="landing-page">
-    <header class="header-container" id="Description">
-      <img class="container-img" src="../../src/assets/lemon_tea.png" />
-      <span class="header-desc-text">
-        Anything in Javascript and Android
-      </span>
-      <div class="header-intro-text">
-        I'm Swaroop
+    <div class="header-description" id="Description">
+      <div class="header-img-container">
+        <div class="header-intro-container">
+          Hello, I'm Swaroop
+          <div class="header-down-btn" :ref="'headerDownBtn'" @click="animateBtn(scrollToSection.bind(this,'about'),'headerDownBtn')">
+            Dive Deep
+          </div>
+        </div>
       </div>
-    </header>
-    <div class="about" id="about">
-      <div>
+    </div>
+    <div class="about" id="about_section">
+      <div class="title">
         About Me
       </div>
       <img class="profile-pic" src="../../src/images/Profile.jpg" />
@@ -46,8 +47,10 @@
   import mock_data from '../../mock.json';
   import axios from 'axios';
   import common from "../../src/common.js";
+  import AppMixin from "../AppMixin";
 
   export default {
+    mixins: [AppMixin],
     components: {
       Skills,
       Projects,
@@ -89,12 +92,51 @@
             iconFontclass+="fa-envelope-square";
         }
         return iconFontclass;
+      },
+      scrollToSection(section) {
+        let aboutSection = document.getElementById("about_section");
+        switch(section) {
+          case 'about':
+            aboutSection.scrollIntoView({
+              behavior: 'smooth'
+            });
+            break;
+        }
       }
     }
   }
 </script>
 
 <style scoped>
+
+  @media screen and (max-height: 750px){
+    .header-description {
+      height: 670px !important;
+    }
+  }
+  body {
+    margin: 0px !important;
+  }
+
+  .header-img-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+  .header-img-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    background: black;
+  }
+  .container-img-header {
+    height: 100%;
+    width: 100%;
+  }
   .header-desc-text {
     font-size:30px;
     font-family: "Arial Rounded MT Bold";
@@ -110,7 +152,7 @@
   }
   .header-container {
     width: 100%;
-    height: 300px;
+    height: 850px;
     position: relative;
   }
 
@@ -169,9 +211,38 @@
     border-radius: 8px;
   }
 
+  .about {
+    margin: 30px 0 30px 0;
+  }
   .about p {
     position: relative;
     margin: auto;
     width: 65%;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+  .about .title {
+    font-size: 30px;
+  }
+  .header-description {
+    position: relative;
+    height: 850px;
+  }
+  .header-intro-container {
+    position: relative;
+    top: 50%;
+    font-size:30px;
+    font-family: "Arial MT Bold";
+    opacity: 1.5;
+    color: #fff;
+  }
+  .header-down-btn {
+    border: 1px solid white;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 8px;
+    position: relative;
+    margin: 20px auto;
+    width: 200px;
   }
 </style>

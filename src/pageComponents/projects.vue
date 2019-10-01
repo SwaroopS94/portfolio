@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="carousel-container">
-      <div v-for="(project,projectIndex) in projects"
+      <div class="slide-show" v-for="(project,projectIndex) in projects"
            v-model="selectedProject"
            :style="{display: project.style}"
       >
         <div class="text">{{selectedProject.projectTitle}}</div>
         <div class="img-container">
-          <img :src=selectedProject.src>
+          <img :src=selectedProject.src alt>
           <a class="prev" @click="addSlide(-1)"><img src='../../src/assets/left_arrow.svg'/> </a>
           <a class="next" @click="addSlide(1)"><img src="../../src/assets/right_arrow.svg"/></a>
         </div>
@@ -107,19 +107,20 @@
     width: 100%;
     height: 200px;
     overflow: auto;
+    position: relative;
   }
 
   .prev {
     position: absolute;
     z-index: 10;
     left: 5px;
-    top: 50%;
+    top: 38%;
   }
 
   .next {
     position: absolute;
     right: 5px;
-    top: 50%;
+    top: 38%;
   }
 
   .prev img, .next img {
@@ -132,6 +133,18 @@
     margin-top: 10px;
   }
 
+  .slide-show {
+    -webkit-animation-name: slide;
+    -moz-animation-name: slide;
+    -o-animation-name: slide;
+    animation-name: slide;
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    -o-animation-delay: 1s;
+    animation-delay: 1s;
+    animation-direction: normal;
+  }
+
 
 
   /* Fading animation */
@@ -140,6 +153,23 @@
     -webkit-animation-duration: 1.5s;
     animation-name: fade;
     animation-duration: 1.5s;
+  }
+
+  @keyframes slide {
+    0% {
+      -webkit-transform: translateX(0px);
+      -moz-transform: translateX(0px);
+      -ms-transform: translateX(0px);
+      -o-transform: translateX(0px);
+      transform: translateX(0px);
+    }
+    100% {
+      -webkit-transform: translateX(100px);
+      -moz-transform: translateX(0px);
+      -ms-transform: translateX(0px);
+      -o-transform: translateX(0px);
+      transform: translateX(100px);
+    }
   }
 
   @-webkit-keyframes fade {

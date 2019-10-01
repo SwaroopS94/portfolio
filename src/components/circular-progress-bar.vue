@@ -19,7 +19,6 @@
     },
     mounted() {
       let circularProgressPercentage = 90*this.progress/25;
-      console.log("Progress : ",circularProgressPercentage);
       let circularProgressStyle = document.createElement("style");
       circularProgressStyle.type = "text/css";
       circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.skillName} {` +
@@ -44,7 +43,6 @@
     color: #444;
     font-family: "Lato", Tahoma, Geneva, sans-serif;
     font-size: 16px;
-    padding: 10px;
   }
 
   .pie-wrapper {

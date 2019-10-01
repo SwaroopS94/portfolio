@@ -40,7 +40,7 @@
     margin-top: 30px;
     width: 100%;
     text-align: center;
-    overflow: scroll;
+    overflow: scroll hidden;
   }
 
   .skills {

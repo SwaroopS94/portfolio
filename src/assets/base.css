@@ -69,6 +69,23 @@ a:hover
   object-fit: cover;
 }
 
+.animate-btn-click {
+  animation-name: btnClick;
+  animation-duration: 0.5s;
+}
+
+@keyframes btnClick {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
 #menuToggle
 {
   display: block;

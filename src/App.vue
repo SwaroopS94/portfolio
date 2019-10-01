@@ -3,6 +3,15 @@
     <router-view/>
   </div>
 </template>
+<script>
+  export default {
+    methods: {
+      animateClick(callback) {
+        callback.call(this);
+      }
+    }
+  }
+</script>
 <style>
   @import 'assets/base.css';
   @import "assets/components.css";
@@ -14,7 +23,5 @@
   background: #f7f7f7;
   text-align: center;
   color: #2c3e50;
-  margin-top: 20px;
-  padding-bottom: 10px;
 }
 </style>
