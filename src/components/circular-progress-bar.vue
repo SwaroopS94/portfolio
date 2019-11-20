@@ -21,12 +21,17 @@
       let circularProgressPercentage = 90*this.progress/25;
       let circularProgressStyle = document.createElement("style");
       circularProgressStyle.type = "text/css";
-      circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.skillName} {` +
-      "background: linear-gradient(to right, #e67e22 50%, #34495e 50%);}";
-      circularProgressStyle.innerHTML = `.pie-wrapper--solid.progress-50.${'circular_progress'+this.skillName}:before {` +
-      "background: #e67e22;-webkit-transform: rotate(0deg);" +
-      `transform: rotate(${circularProgressPercentage}deg);` +
+      circularProgressStyle.innerHTML = `.pie-wrapper--solid.${'circular_progress'+this.skillName} {` +
+      `transform: rotate(${0}deg);` +
       "}";
+      setTimeout(() => {
+        circularProgressStyle.innerHTML = `.pie-wrapper--solid.${'circular_progress'+this.skillName}:before {` +
+        "background: #e67e22;" +
+        "-webkit-transform: rotate(0deg);" +
+        `transform: rotate(${circularProgressPercentage}deg);` +
+        `transition: transform 1s ease-in`+
+        "}";
+      },1000);
       let script = document.querySelector("script");
       script.parentNode.insertBefore(circularProgressStyle,script);
 

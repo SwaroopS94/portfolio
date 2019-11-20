@@ -1,0 +1,37 @@
+.eye{
+  width: 70px;
+  height: 70px;
+  background-color: black;
+  border-radius: 50%;
+  box-shadow: 90px 0px 0px 0px white;
+  position: relative;
+  margin: 36px 26px;
+  left: -35px;
+}
+
+.eye:after{
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  box-shadow: 90px 0px 0px 0px black;
+  border-radius: 50%;
+  left: 29px;
+  top: 32px;
+  position: absolute;
+  content: "";
+  -webkit-animation: eyeball 1s linear infinite alternate;
+  -moz-animation: eyeball 1s linear infinite alternate;
+  animation: eyeball 600ms linear infinite alternate;
+}
+@-webkit-keyframes eyeball{
+  0%{left: 35px;}
+  100%{left: 4px;}
+}
+@-moz-keyframes eyeball{
+  0%{left: 35px;}
+  100%{left: 4px;}
+}
+@keyframes eyeball{
+  0%{left: 35px;}
+  100%{left: 4px;}
+}

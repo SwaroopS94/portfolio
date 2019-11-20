@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="carousel-container">
-      <div class="slide-show" v-for="(project,projectIndex) in projects"
+      <div v-for="(project,projectIndex) in projects"
            v-model="selectedProject"
            :style="{display: project.style}"
       >
         <div class="text">{{selectedProject.projectTitle}}</div>
-        <div class="img-container">
+        <div class="slide-show img-container">
           <img :src=selectedProject.src alt>
           <a class="prev" @click="addSlide(-1)"><img src='../../src/assets/left_arrow.svg'/> </a>
           <a class="next" @click="addSlide(1)"><img src="../../src/assets/right_arrow.svg"/></a>
@@ -134,15 +134,7 @@
   }
 
   .slide-show {
-    -webkit-animation-name: slide;
-    -moz-animation-name: slide;
-    -o-animation-name: slide;
-    animation-name: slide;
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
-    -o-animation-delay: 1s;
-    animation-delay: 1s;
-    animation-direction: normal;
+    transition: all 1s ease-in;
   }
 
 

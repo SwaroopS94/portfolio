@@ -6,8 +6,14 @@
       </div>
       <div class="skills" v-if="skills && skills.length>0">
         <div v-for="(skill, index) in skills" v-if="skill && skill.progress">
-          <span> {{skill.name}}</span>
-          <circular-progress-bar :skillName="skill.name" :progress="skill.progress"></circular-progress-bar>
+          <div class="skills-block">
+            <div class="skill-name"> {{skill.name}}</div>
+            <div class="linear-progress-bar">
+              <div :id="'lin_'+index" class="linear-progress">
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -15,10 +21,7 @@
 </template>
 
 <script>
-  import CircularProgressBar from "../components/circular-progress-bar";
-
   export default {
-    components: {CircularProgressBar},
     name: "skills",
     props: {
       skills:{
@@ -29,6 +32,18 @@
     methods: {
       getSkillClass(index) {
         return (index!==0)?'first-skill':'';
+      }
+    },
+    watch: {
+      skills(newVal) {
+        if(newVal.length > 0) {
+          setTimeout(() => {
+            let progressElements = document.getElementsByClassName("linear-progress");
+            for(let i=0;i<progressElements.length;i++) {
+              progressElements[i].style.width = "80%";
+            }
+          },2000);
+        }
       }
     }
   }
@@ -41,15 +56,51 @@
     width: 100%;
     text-align: center;
     overflow: scroll hidden;
-  }
-
-  .skills {
-    display: flex;
+    margin-bottom: 30px;
   }
 
   .skill-label {
     font-size: 40px;
     font-weight: bold;
-
   }
+
+  .skills .skill-name {
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .linear-progress-bar {
+    width: 300px;
+    border: 3px solid black;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: auto;
+  }
+
+  .linear-progress-bar .linear-progress {
+    width: 0;
+    height: 5px;
+    background: #000;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: width 2s;
+    -moz-transition: width 2s;
+    -ms-transition: width 2s;
+    -o-transition: width 2s;
+    transition: width ease-in-out 2s;
+  }
+
+  .skills-block {
+    width: 350px;
+    margin: auto;
+    display: block;
+    text-align: left;
+    padding: 40px 0px 0px 0px ;
+  }
+
+
 </style>
