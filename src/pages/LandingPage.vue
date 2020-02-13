@@ -46,7 +46,7 @@
   import Skills from "../pageComponents/skills";
   import mock_data from '../../mock.json';
   import axios from 'axios';
-  import common from "../../src/common.js";
+  import common from "../../public/common.js";
   import AppMixin from "../AppMixin";
 
   export default {
@@ -62,13 +62,18 @@
         skills: [],
         messageData: "",
         socialContacts: [],
-        mockData: mock_data
+        mockData: mock_data,
+        deferredPrompt: {}
       }
     },
     mounted() {
       this.skills = JSON.parse(JSON.stringify(mock_data.skills));
       this.socialContacts = mock_data.socialContacts;
-
+      window.addEventListener("beforeinstallprompt",(event) => {
+        event.preventDefault();
+        this.deferredPrompt = event;
+      });
+      console.log("Getting the mode of env : ",process.env);
     },
     methods: {
       sendMessage() {
@@ -102,6 +107,11 @@
             });
             break;
         }
+        this.deferredPrompt.prompt("Test");
+        this.deferredPrompt.userChoice.then((val) => {
+          console.log("Selected Val : ",val);
+          this.deferredPrompt = null;
+        });
       }
     }
   }

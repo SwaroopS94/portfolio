@@ -2,16 +2,14 @@
   <div>
     <div class="skills-container">
       <div class="skill-label">
-      Skills
+        Skills
       </div>
-      <div class="skills" v-if="skills && skills.length>0">
-        <div v-for="(skill, index) in skills" v-if="skill && skill.progress">
-          <div class="skills-block">
-            <div class="skill-name"> {{skill.name}}</div>
-            <div class="linear-progress-bar">
-              <div :id="'lin_'+index" class="linear-progress">
+      <div id="skillContainer" class="skills" v-if="skills && skills.length>0">
+        <div class="skills-block" v-for="(skill, index) in skills" v-if="skill && skill.progress">
+          <div class="skill-name"> {{skill.name}}</div>
+          <div class="linear-progress-bar">
+            <div :id="'lin_'+index" class="linear-progress">
 
-              </div>
             </div>
           </div>
         </div>
@@ -24,27 +22,28 @@
   export default {
     name: "skills",
     props: {
-      skills:{
+      skills: {
         type: Array,
         default: []
       }
     },
     methods: {
       getSkillClass(index) {
-        return (index!==0)?'first-skill':'';
+        return (index !== 0) ? 'first-skill' : '';
+      },
+      onSkillsFocussed(skillIndex, skillProgress) {
+        if (this.skills.length > 0) {
+          let domElem = document.getElementById(`lin_${skillIndex}`);
+          domElem.style.width = skillProgress;
+        }
+      },
+      onScrollOffsetReached() {
+        console.log("Checking for Offset : ",);
       }
     },
-    watch: {
-      skills(newVal) {
-        if(newVal.length > 0) {
-          setTimeout(() => {
-            let progressElements = document.getElementsByClassName("linear-progress");
-            for(let i=0;i<progressElements.length;i++) {
-              progressElements[i].style.width = "80%";
-            }
-          },2000);
-        }
-      }
+    mounted() {
+      let debouncedFunction = debounce(this.onScrollOffsetReached.bind(this), 1000);
+      window.addEventListener("scroll", debouncedFunction());
     }
   }
 </script>
@@ -99,7 +98,7 @@
     margin: auto;
     display: block;
     text-align: left;
-    padding: 40px 0px 0px 0px ;
+    padding: 40px 0px 0px 0px;
   }
 
 
